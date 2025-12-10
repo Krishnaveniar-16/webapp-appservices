@@ -1,0 +1,48 @@
+name: "Deploy to Azure App Service"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Login to Azure using Service Principal
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # ------------------------------------
+      # Restart frontend + backend staging slots
+      # ------------------------------------
+      - name: Restart Frontend Staging Slot
+        run: az webapp restart --resource-group cicd-aks-rg --name frontend-app16 --slot staging
+
+      - name: Restart Backend Staging Slot
+        run: az webapp restart --resource-group cicd-aks-rg --name backend-app16 --slot staging
+
+      # ------------------------------------
+      # Optional: Swap slots -> Production
+      # ------------------------------------
+      #- name: Swap Frontend Slot
+      #  if: github.event.inputs.swap == 'true'
+       # run: |
+        #  az webapp deployment slot swap \
+         #   --resource-group cicd-aks-rg \
+         #   --name frontend-app \
+         #   --slot staging
+
+      #- name: Swap Backend Slot
+      # if: github.event.inputs.swap == 'true'
+      #  run: |
+      #    az webapp deployment slot swap \
+      #      --resource-group cicd-aks-rg \
+      #      --name backend-app \
+      #      --slot staging
