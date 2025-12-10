@@ -20,9 +20,6 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # ------------------------------------
-      # Restart frontend + backend staging slots
-      # ------------------------------------
       - name: Restart Frontend Staging Slot
         run: az webapp restart --resource-group cicd-aks-rg --name frontend-app16 --slot staging
 
