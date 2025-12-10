@@ -19,7 +19,7 @@ resource "azurerm_linux_web_app" "frontend" {
 
   site_config {
     application_stack {
-      docker_image_name = "kveni16/react-frontend:latest"
+      docker_image_name = "kveni16/react-frontend:v1"
       docker_registry_url         = "https://index.docker.io"
       docker_registry_username    = var.dockerhub_user
       docker_registry_password    = var.dockerhub_pass
@@ -42,7 +42,7 @@ resource "azurerm_linux_web_app_slot" "frontend_staging" {
 
   site_config {
     application_stack {
-      docker_image_name = "kveni16/react-frontend:staging"
+      docker_image_name = "kveni16/react-frontend:v1"
       docker_registry_url         = "https://index.docker.io"
       docker_registry_username    = var.dockerhub_user
       docker_registry_password    = var.dockerhub_pass
@@ -66,7 +66,7 @@ resource "azurerm_linux_web_app" "backend" {
 
   site_config {
     application_stack {
-      docker_image_name = "kveni16/flask-backend:latest"
+      docker_image_name = "kveni16/flask-backend:v1"
       docker_registry_url         = "https://index.docker.io"
       docker_registry_username    = var.dockerhub_user
       docker_registry_password    = var.dockerhub_pass
@@ -90,7 +90,7 @@ resource "azurerm_linux_web_app_slot" "backend_staging" {
 
   site_config {
     application_stack {
-      docker_image_name = "kveni16/flask-backend:staging"
+      docker_image_name = "kveni16/flask-backend:v1"
       docker_registry_url         = "https://index.docker.io"
       docker_registry_username    = var.dockerhub_user
       docker_registry_password    = var.dockerhub_pass

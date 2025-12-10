@@ -27,5 +27,5 @@ variable "db_password" {
 
 variable "db_name" {
   type        = string
-  default     = "appdb"   # You can change this later
+  default     = "postgres"   # You can change this later
 }
