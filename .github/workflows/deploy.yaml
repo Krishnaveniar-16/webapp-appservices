@@ -29,9 +29,7 @@ jobs:
       - name: Restart Backend Staging Slot
         run: az webapp restart --resource-group cicd-aks-rg --name backend-app16 --slot staging
 
-      # ------------------------------------
-      # Optional: Swap slots -> Production
-      # ------------------------------------
+
       #- name: Swap Frontend Slot
       #  if: github.event.inputs.swap == 'true'
        # run: |
